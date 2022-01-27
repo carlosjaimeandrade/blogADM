@@ -1,1 +1,6 @@
 01 - npm start - iniciando projeto
+02 - npm install --save express
+03 - npm install --save sequelize
+04 - npm install mysql2 --save
+05 - npm install body-parser --save
+06 - npm install ejs --save
