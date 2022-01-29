@@ -14,12 +14,21 @@ router.post('/admin/categories/new', (req, res) => {
             title: title,
             slug: slugify(title)
         }).then(() => {
-            res.redirect('/')
+            res.redirect('/admin/categories')
         })      
     }else{
         res.redirect('/admin/categories/new')
     }
 
+})
+
+router.get('/admin/categories', (req, res) => {
+    Category.findAll().then(categorias=>{
+        res.render('admin/categories/index.ejs',{
+            categorias: categorias
+        })
+    })
+   
 })
 
 module.exports = router
