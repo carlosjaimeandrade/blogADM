@@ -2,8 +2,14 @@
     <a class="navbar-brand" href="/">
         Blog
     </a>
-    <div>
-    <a class="btn btn-navbar text-light" href="/admin/categories/new">Nova categoria</a>
-    <a class="btn btn-navbar text-light" href="/admin/categories">Lista de categorias</a>
-</div>
+
+    <div class="dropdown mr-auto">
+        <button class="btn  dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categorias
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/admin/categories/new">Nova categoria</a>
+            <a class="dropdown-item"  href="/admin/categories">Lista de categorias</a>
+        </div>
+      </div>
 </nav>
