@@ -1,38 +1,43 @@
+<%- include('../../partials/header.ejs') %>
 
-<%- include('../../partials/header.ejs')  %> 
+    <%- include('../../partials/navbar.ejs') %>
 
-<%- include('../../partials/navbar.ejs')  %> 
+        <main>
+            <div class="container">
 
-<main>
-    <div class="container">
+                <h2 class="mt-5">Listagem de categoria</h2>
 
-    <h2 class="mt-5">Listagem de categoria</h2>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>titulo</th>
+                            <th>Slug</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% categorias.forEach(caregoria=>{ %>
+                            <tr>
+                                <td>
+                                    <%= caregoria.id %>
+                                </td>
+                                <td>
+                                    <%= caregoria.title %>
+                                </td>
+                                <td>
+                                    <%= caregoria.slug %>
+                                </td>
+                                <td>
+                                    <button class="btn btn-warning">Editar</button>
+                                    <a href="/admin/categories/delete/<%= caregoria.id %>" class="btn btn-danger">Deletar</a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
 
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>titulo</th>
-                <th>Slug</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% categorias.forEach(caregoria=>{ %> 
-            <tr>
-                <td><%= caregoria.id %> </td>
-                <td><%= caregoria.title %> </td>
-                <td><%= caregoria.slug %> </td>
-                <td>
-                    <button class="btn btn-warning">Editar</button>
-                    <button class="btn btn-danger">Deletar</button>
-                </td>
-            </tr>
-            <% }) %> 
-        </tbody>
-    </table>
+            </div>
+        </main>
 
-    </div>
-</main>
-
-<%- include('../../partials/footer.ejs')  %> 
+        <%- include('../../partials/footer.ejs') %>

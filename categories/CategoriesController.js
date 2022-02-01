@@ -15,22 +15,45 @@ router.post('/admin/categories/new', (req, res) => {
             slug: slugify(title)
         }).then(() => {
             res.redirect('/admin/categories')
-        })      
-    }else{
+        })
+    } else {
         res.redirect('/admin/categories/new')
     }
+
+})
+
+router.get('/admin/categories/delete/:id', (req, res) => {
+    const id = req.params.id
+
+    if (id != undefined) {
+        if (!isNaN(id)) {
+
+            Category.destroy({
+                where: {
+                    id: id
+                }
+            }).then(() => {
+                res.redirect('/admin/categories')
+            })
+
+        } else {
+            res.redirect('/admin/categories')
+        }
+    } else {
+        res.redirect('/admin/categories')
+    }
+
 
 })
 
 router.get('/admin/categories', (req, res) => {
     Category.findAll({
         raw: true, order: [['id', 'DESC']]
-    }).then(categorias=>{
-        res.render('admin/categories/index.ejs',{
+    }).then(categorias => {
+        res.render('admin/categories/index.ejs', {
             categorias: categorias
         })
     })
-   
 })
 
 module.exports = router
