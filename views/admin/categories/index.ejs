@@ -1,6 +1,6 @@
 <%- include('../../partials/header.ejs') %>
 
-    <%- include('../../partials/navbar.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
 
         <main>
             <div class="container">
@@ -30,7 +30,7 @@
                                 </td>
                                 <td>
                                     <button class="btn btn-warning">Editar</button>
-                                    <a href="/admin/categories/delete/<%= caregoria.id %>" class="btn btn-danger">Deletar</a>
+                                    <button id="<%= caregoria.id %>" onclick="confirmarDelecao(event)" class="btn btn-danger">Deletar</button>
                                 </td>
                             </tr>
                             <% }) %>
@@ -40,4 +40,15 @@
             </div>
         </main>
 
-        <%- include('../../partials/footer.ejs') %>
+<%- include('../../partials/footer.ejs') %>
+
+        <script>
+            function confirmarDelecao(event){
+                const id = event.target.id
+                const decisao = confirm("você quer deletar ?");
+
+                if(decisao){
+                    window.location.href = `/admin/categories/delete/${id}`;
+                }
+            }
+        </script>
