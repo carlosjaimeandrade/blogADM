@@ -56,4 +56,46 @@ router.get('/admin/categories', (req, res) => {
     })
 })
 
+router.get('/admin/categories/edit/:id', (req, res) => {
+    const id = req.params.id
+
+    //verifica se não é um numero
+    if (isNaN(id)) {
+        res.redirect('/admin/categories')
+    }
+
+    // pesquisa diretamente pelo id
+    Category.findByPk(id).then(categorias => {
+        if (categorias != undefined) {
+            res.render('admin/categories/edit', {
+                categorias: categorias
+            })
+
+        } else {
+            res.redirect('/admin/categories')
+        }
+    }).catch(err => {
+        res.redirect('/admin/categories')
+    })
+})
+
+router.post('/admin/categories/edit/:id', (req, res) => {
+    const id = req.params.id
+    const title = req.body.title
+
+    Category.update(
+        {
+            title: title,
+            slug: slugify(title)
+        },
+        {
+            where: { id: id }
+        }
+    ).then(() => {
+        res.redirect('/admin/categories')
+    })
+
+})
+
+
 module.exports = router

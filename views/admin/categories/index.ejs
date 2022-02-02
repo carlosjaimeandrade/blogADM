@@ -29,7 +29,7 @@
                                     <%= caregoria.slug %>
                                 </td>
                                 <td>
-                                    <button class="btn btn-warning">Editar</button>
+                                    <a href="/admin/categories/edit/<%= caregoria.id %>" class="btn btn-warning">Editar</a>
                                     <button id="<%= caregoria.id %>" onclick="confirmarDelecao(event)" class="btn btn-danger">Deletar</button>
                                 </td>
                             </tr>
@@ -44,10 +44,12 @@
 
         <script>
             function confirmarDelecao(event){
+                //event.preventDefalut()
                 const id = event.target.id
                 const decisao = confirm("você quer deletar ?");
 
                 if(decisao){
+
                     window.location.href = `/admin/categories/delete/${id}`;
                 }
             }
