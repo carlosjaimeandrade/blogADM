@@ -1,9 +1,11 @@
 const express = require('express');
 const router = new express.Router();
-const Category = require("../categories/Category")
+const Category = require('../categories/category')
+const Article = require('./Article')
+const slugify = require('slugify');
 
 
-router.get('/articles', (req, res) => {
+router.get('/admin/articles', (req, res) => {
     res.send('ROTA DE ARTIGO')
 })
 
@@ -15,6 +17,22 @@ router.get('/admin/articles/new', (req, res) => {
         res.render('admin/articles/new',{
             categorias: categorias
         })
+    })
+    
+})
+
+router.post('/admin/articles/new', (req, res) => {
+    const title = req.body.title;
+    const body = req.body.body;
+    const category = req.body.category;
+    
+    Article.create({
+        title: title,
+        slug: slugify(title),
+        body: body,
+        categoryId: category
+    }).then(()=>{
+        res.redirect('/admin/articles')
     })
     
 })
