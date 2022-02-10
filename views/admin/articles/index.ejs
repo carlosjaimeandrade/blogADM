@@ -13,11 +13,21 @@
                             <th>id</th>
                             <th>titulo</th>
                             <th>Slug</th>
-                            <th>Category</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <% articles.forEach(article=>{ %>  
+                            <tr>
+                                <td><%= article.id%></td>
+                                <td><%= article.title%></td>  
+                                <td><%= article.slug%></td>  
+                                <td>
+                                    <a href="/admin/article/edit/<%= article.id %>" class="btn btn-warning">Editar</a>
+                                    <button id="<%= article.id %>" onclick="confirmarDelecao(event)" class="btn btn-danger">Deletar</button>
+                                </td>
+                            </tr>
+                        <%}) %> 
  
                     </tbody>
                 </table>
@@ -35,7 +45,7 @@
 
                 if(decisao){
 
-                    window.location.href = `/admin/categories/delete/${id}`;
+                    window.location.href = `/admin/article/delete/${id}`;
                 }
             }
         </script>
