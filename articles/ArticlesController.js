@@ -6,6 +6,7 @@ const slugify = require('slugify');
 
 
 router.get('/admin/articles', (req, res) => {
+  
     Article.findAll({
         include: [{model: Category}]
     }).then(articles =>{
@@ -41,6 +42,31 @@ router.post('/admin/articles/new', (req, res) => {
         res.redirect('/admin/articles')
     })
     
+})
+
+
+router.get('/admin/article/delete/:id', (req, res) => {
+    const id = req.params.id
+
+    if (id != undefined) {
+        if (!isNaN(id)) {
+
+            Article.destroy({
+                where: {
+                    id: id
+                }
+            }).then(() => {
+                res.redirect('/admin/articles')
+            })
+
+        } else {
+            res.redirect('/admin/articles')
+        }
+    } else {
+        res.redirect('/admin/articles')
+    }
+
+
 })
 
 module.exports = router
