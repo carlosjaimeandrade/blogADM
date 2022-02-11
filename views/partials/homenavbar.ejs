@@ -10,7 +10,7 @@
         <% categories.forEach(category=>{ %> 
             <div>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="/"><%= category.title%></a>
+                    <a class="nav-link text-white" href="/category/<%= category.id%>"><%= category.title%></a>
                 </li>
             </div>
         <% }) %> 

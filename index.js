@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
     Article.findAll({
         order: [['id', 'DESC']]
     }).then(articles => {
-
+        
         Category.findAll().then(categories => {
             res.render('index', { articles: articles, categories: categories })
         })
@@ -64,6 +64,23 @@ app.get("/article/:slug", (req, res) => {
     }).catch(err => {
         res.redirect('/')
     })
+})
+
+app.get("/category/:categoryid",(req,res)=>{
+    const categoryId = req.params.categoryid
+
+    Article.findAll({
+        where: { categoryid: categoryId },
+        include:[{model: Category}]
+    }).then(articles => {
+        console.log(articles)
+        Category.findAll().then(categories =>{
+            res.render('index', { articles: articles, categories: categories})
+        })
+
+       
+    })
+    
 })
 
 // rodando servidor
