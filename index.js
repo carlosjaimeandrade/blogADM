@@ -84,6 +84,6 @@ app.get("/category/:categoryid",(req,res)=>{
 })
 
 // rodando servidor
-app.listen(8080, () => {
+app.listen(8081, () => {
     console.log('servidor rodando')
 })
