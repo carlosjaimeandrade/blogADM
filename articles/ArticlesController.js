@@ -104,7 +104,17 @@ router.get('/admin/article/delete/:id', (req, res) => {
         res.redirect('/admin/articles')
     }
 
+})
 
+router.get("/article/page/:num", (req, res) =>{
+    var page = req.params.num -1
+
+    Article.findAndCountAll({
+        limit: 4,
+        offset: page * 4
+    }).then(articles=>{
+        res.json(articles)
+    })
 })
 
 module.exports = router
