@@ -108,12 +108,32 @@ router.get('/admin/article/delete/:id', (req, res) => {
 
 router.get("/article/page/:num", (req, res) =>{
     var page = req.params.num -1
+    var offset = 0
+
+    if(isNaN(page)){
+        offset = 0
+    }else{
+        offset = page * 4
+    }
 
     Article.findAndCountAll({
         limit: 4,
-        offset: page * 4
+        offset: offset
     }).then(articles=>{
-        res.json(articles)
+        var next
+        if(offset + 4 > articles.count ){
+            next = false
+        }else{
+            next = true
+        }
+        var result = {
+            offset: offset,
+            next : next,
+            articles: articles
+        }
+        res.json(result)
+    
+
     })
 })
 
