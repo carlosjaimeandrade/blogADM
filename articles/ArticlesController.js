@@ -110,6 +110,10 @@ router.get("/article/page/:num", (req, res) =>{
     var page = req.params.num -1
     var offset = 0
 
+    if((page + 1 == 0) || (page + 1== 1)){
+        res.redirect('/')
+    }
+
     if(isNaN(page)){
         offset = 0
     }else{

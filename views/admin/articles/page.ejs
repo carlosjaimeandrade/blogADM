@@ -22,7 +22,7 @@
 
         <% if(parseInt(result.page)  == 2) { %>
             <a class="float-left" href="/"> Voltar</a>
-        <%}else{%>
+        <%}else if(parseInt(result.page)>2){%>
             <a class="float-left" href="/article/page/<%= parseInt(result.page) -1 %>"> Voltar</a>
         <%} %>
 
