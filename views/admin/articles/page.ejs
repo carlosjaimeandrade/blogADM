@@ -1,20 +1,36 @@
+<%- include('../../partials/header.ejs')  %>
+<%- include('../../partials/homenavbar.ejs')  %>
 
-<%- include('../../partials/header.ejs')  %> 
-<%- include('../../partials/homenavbar.ejs')  %> 
 <body>
-    <div class="container">
-
-        <% result.articles.rows.forEach(article=>{ %>  
-            <div class="card m-2">
-                <div class="card-header">
-                    <h4><%= article.title%></h4>
-                </div>
-                <div class="card-body">
-                    <a href="/article/<%= article.slug%>" class="btn btn-success">Ler artigo</a>
-                </div>
-            </div>
-        <%}) %> 
+  <div class="container">
+    <% result.articles.rows.forEach(article=>{ %>
+    <div class="card m-2">
+      <div class="card-header">
+        <h4><%= article.title%></h4>
+      </div>
+      <div class="card-body">
+        <a href="/article/<%= article.slug%>" class="btn btn-success">Ler artigo</a>
+      </div>
     </div>
+    <%}) %>
+
+    <div class="row">
+      <div class="col col-12">
+        <% if(result.next) { %>
+            <a class="float-right" href="/article/page/<%= parseInt(result.page) +1 %>">Next >>></a>
+        <% } %>
+
+        <% if(parseInt(result.page)  == 2) { %>
+            <a class="float-left" href="/"> Voltar</a>
+        <%}else{%>
+            <a class="float-left" href="/article/page/<%= parseInt(result.page) -1 %>"> Voltar</a>
+        <%} %>
+
+      </div>
+      <hr>
+    </div>
+
+  </div>
 </body>
 
-<%- include('../../partials/footer.ejs')  %> 
+<%- include('../../partials/footer.ejs')  %>
