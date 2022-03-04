@@ -6,6 +6,7 @@ const connection = require("./database/database")
 //importando o controller 
 const categoriesController = require("./categories/CategoriesController")
 const articlesController = require("./articles/ArticlesController")
+const userController = require("./user/UserController")
 
 //importantando model do bando de dados
 const Article = require("./articles/Article")
@@ -32,6 +33,8 @@ connection.authenticate().then(() => {
 app.use("/", categoriesController);
 
 app.use("/", articlesController);
+
+app.use("/", userController)
 
 app.get("/", (req, res) => {
     Article.findAll({
